@@ -19,8 +19,8 @@ public class MonthSummaryService {
     final float LOW_FIBER = 25f;     // g/ngày
     final float LOW_PROTEIN = 60f;
 
-    public MonthSummary monthSummary(Integer userId , Integer month) {
-        List<DailySummary> monthSummaries = dailySummaryRepository.findByUserIdAndMonth(userId, month);
+    public MonthSummary monthSummary(Integer userId , Integer month , Integer year) {
+        List<DailySummary> monthSummaries = dailySummaryRepository.findByUserIdAndMonth(userId, month , year);
 
         Float avgCaloriesIn = 0.0f;
         Float avgCaloriesOut = 0.0f;

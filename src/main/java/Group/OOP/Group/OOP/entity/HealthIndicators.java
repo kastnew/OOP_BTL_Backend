@@ -17,9 +17,8 @@ public class HealthIndicators {
     @Column(name = "Indicator_ID")
     private Integer indicatorId ;
 
-    @OneToOne
-    @JoinColumn(name = "User_ID")
-    private User user ;
+    @Column(name = "User_ID")
+    private Integer userId ;
 
     @Column(name = "Height")
     private Float height ;

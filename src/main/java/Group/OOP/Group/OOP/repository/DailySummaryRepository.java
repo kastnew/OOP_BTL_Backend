@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public interface DailySummaryRepository extends JpaRepository<DailySummary, Integer>{
@@ -14,9 +15,10 @@ public interface DailySummaryRepository extends JpaRepository<DailySummary, Inte
 
     @Query("SELECT d FROM DailySummary d " +
             "WHERE d.userId = :userId " +
-            "AND MONTH(d.date) = :month " )
+            "AND MONTH(d.date) = :month " +
+            "AND YEAR(d.date) = :year ")
     public List<DailySummary> findByUserIdAndMonth(
-            Integer userId, Integer month
+            Integer userId, Integer month , Integer year
     );
 
     DailySummary findFirstByUserIdAndDate(Integer userId , LocalDate date);

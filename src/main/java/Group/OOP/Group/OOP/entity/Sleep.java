@@ -4,8 +4,10 @@ import jakarta.persistence.* ;
 import lombok.Data ;
 import lombok.AllArgsConstructor ;
 import lombok.NoArgsConstructor ;
+import org.springframework.cglib.core.Local;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
@@ -24,10 +26,10 @@ public class Sleep {
     private Integer userId;
 
     @Column(name = "Sleep_Time")
-    private Date sleepTime;
+    private LocalDateTime sleepTime;
 
     @Column(name = "Wake_Time")
-    private Date wakeTime;
+    private LocalDateTime wakeTime;
 
     @Column(name = "Sleep_Type", length = 50)
     private String sleepType;
@@ -54,19 +56,19 @@ public class Sleep {
         this.userId = userId;
     }
 
-    public Date getSleepTime() {
+    public LocalDateTime getSleepTime() {
         return sleepTime;
     }
 
-    public void setSleepTime(Date sleepTime) {
+    public void setSleepTime(LocalDateTime sleepTime) {
         this.sleepTime = sleepTime;
     }
 
-    public Date getWakeTime() {
+    public LocalDateTime getWakeTime() {
         return wakeTime;
     }
 
-    public void setWakeTime(Date wakeTime) {
+    public void setWakeTime(LocalDateTime wakeTime) {
         this.wakeTime = wakeTime;
     }
 

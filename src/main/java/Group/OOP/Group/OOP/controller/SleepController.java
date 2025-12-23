@@ -27,9 +27,9 @@ public class SleepController {
     }
 
     // up
-    @PostMapping("/up/{id}")
-    public void updateSleep(@PathVariable Integer id, @RequestBody Sleep new_sleep) {
-         sleepService.updateSleep(id, new_sleep) ;
+    @PostMapping("/up")
+    public void updateSleep(@RequestBody Sleep new_sleep) {
+         sleepService.updateSleep(new_sleep) ;
     }
     //delete
     @GetMapping("/delete/{id}")

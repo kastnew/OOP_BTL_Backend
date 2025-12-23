@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor ;
 import lombok.AllArgsConstructor ;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
@@ -27,10 +28,10 @@ public class DailyActivity {
     private String activityName ;
 
     @Column(name = "Start_Time")
-    private Date startTime ;
+    private LocalDateTime startTime ;
 
     @Column(name = "End_Time")
-    private Date endTime ;
+    private LocalDateTime endTime ;
 
     @Column(name = "Calories_Burned")
     private Float caloriesBurned ;
@@ -71,19 +72,19 @@ public class DailyActivity {
         this.activityName = acticityName;
     }
 
-    public Date getStartTime() {
+    public LocalDateTime getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(Date startTime) {
+    public void setStartTime(LocalDateTime startTime) {
         this.startTime = startTime;
     }
 
-    public Date getEndTime() {
+    public LocalDateTime getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(Date endTime) {
+    public void setEndTime(LocalDateTime endTime) {
         this.endTime = endTime;
     }
 

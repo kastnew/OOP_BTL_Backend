@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -29,6 +30,8 @@ public class DailyActivityService {
     @Autowired
     private CalculateCaloValueService calculateCaloValueService;
 
+    @Autowired
+    private ActivityTime activityTime;
 
     // them hoat dong
     public DailyActivity createDailyActivity(DailyActivity newDailyActivity) {
@@ -42,7 +45,9 @@ public class DailyActivityService {
         }
 
         float total = calculateCaloValueService.getTotalByDay(newDailyActivity.getUserId() , newDailyActivity.getDate());
+        float totalTime = activityTime.getTotalTimeByDay(newDailyActivity.getUserId() , newDailyActivity.getDate());
         dailySummary.setCaloriesBurned(total);
+        dailySummary.setTotalActivityTime(totalTime);
         dailySummaryRepository.save(dailySummary);
         return newDailyActivity;
     }
@@ -63,7 +68,9 @@ public class DailyActivityService {
             dailySummary.setUserId(newDailyActivity.getUserId());
         }
         float total = calculateCaloValueService.getTotalByDay(newDailyActivity.getUserId() , newDailyActivity.getDate());
+        float totalTime = activityTime.getTotalTimeByDay(newDailyActivity.getUserId() , newDailyActivity.getDate());
         dailySummary.setCaloriesBurned(total);
+        dailySummary.setTotalActivityTime(totalTime);
         dailySummaryRepository.save(dailySummary);
         return newDailyActivity;
     }
@@ -81,7 +88,9 @@ public class DailyActivityService {
         dailyActivityRepository.deleteById(activityId);
 
         float total = calculateCaloValueService.getTotalByDay(userId, date);
+        float totalTime = activityTime.getTotalTimeByDay(userId, date);
         dailySummary.setCaloriesBurned(total);
+        dailySummary.setTotalActivityTime(totalTime);
         dailySummaryRepository.save(dailySummary);
     }
 }

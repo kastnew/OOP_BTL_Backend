@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/monthsummary")
-@CrossOrigin(origins = "*")
+//@CrossOrigin(origins = "*")
 public class MonthSummaryController {
     @Autowired
     private MonthSummaryService monthSummaryService;

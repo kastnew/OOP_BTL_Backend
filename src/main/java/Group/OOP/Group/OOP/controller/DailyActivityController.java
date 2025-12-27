@@ -8,9 +8,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:5173")
 @RequestMapping("/DailyActivity")
-@CrossOrigin(origins = "*")
+//@CrossOrigin(origins = "*")
 public class DailyActivityController {
     @Autowired
     private DailyActivityService dailyActivityService;

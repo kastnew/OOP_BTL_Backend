@@ -40,6 +40,9 @@ public class MealService {
     @Autowired
     private CalculateCalorieIntakeValueService calculateCalorieIntakeValueService;
 
+    @Autowired
+    private CaloInRate caloInRate;
+
     // them bua an
     public Meal createMeal(Meal newMeal) {
         mealRepository.save(newMeal) ;
@@ -64,6 +67,8 @@ public class MealService {
         dailySummary.setTotalSugar(totalSugar);
 
         float totalCalorieIntake = calculateCalorieIntakeValueService.getTotalByDay(newMeal.getUserId() , newMeal.getDate());
+        float rate = caloInRate.CalculateRate(dailySummary.getRating() , dailySummary.getCaloriesConsumed() , totalCalorieIntake);
+        dailySummary.setRating(rate);
         dailySummary.setCaloriesConsumed(totalCalorieIntake);
 
         dailySummaryRepository.save(dailySummary);
@@ -99,6 +104,8 @@ public class MealService {
         dailySummary.setTotalSugar(totalSugar);
 
         float totalCalorieIntake = calculateCalorieIntakeValueService.getTotalByDay(newMeal.getUserId() , newMeal.getDate());
+        float rate = caloInRate.CalculateRate(dailySummary.getRating() , dailySummary.getCaloriesConsumed() , totalCalorieIntake);
+        dailySummary.setRating(rate);
         dailySummary.setCaloriesConsumed(totalCalorieIntake);
 
         dailySummaryRepository.save(dailySummary);
@@ -130,6 +137,8 @@ public class MealService {
         dailySummary.setTotalSugar(totalSugar);
 
         float totalCalorieIntake = calculateCalorieIntakeValueService.getTotalByDay(userId, date);
+        float rate = caloInRate.CalculateRate(dailySummary.getRating() , dailySummary.getCaloriesConsumed() , totalCalorieIntake);
+        dailySummary.setRating(rate);
         dailySummary.setCaloriesConsumed(totalCalorieIntake);
 
         dailySummaryRepository.save(dailySummary);

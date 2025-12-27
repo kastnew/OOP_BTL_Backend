@@ -26,6 +26,11 @@ public class MedicalRecordController {
         medicalRecordService.updateMedicalRecord(medicalRecord);
     }
 
+    @GetMapping("/{id}")
+    public List<MedicalRecord> getMedicalRecords(@PathVariable Integer id) {
+        return medicalRecordService.listMedicalRecord(id);
+    }
+
     @GetMapping("/delete/{id}")
     public void deleteMedicalRecord(@PathVariable Integer id) {
         medicalRecordService.deleteMedicalRecord(id);

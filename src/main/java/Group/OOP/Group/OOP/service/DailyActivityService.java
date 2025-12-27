@@ -33,6 +33,9 @@ public class DailyActivityService {
     @Autowired
     private ActivityTime activityTime;
 
+    @Autowired
+    private CaloRate caloRate;
+
     // them hoat dong
     public DailyActivity createDailyActivity(DailyActivity newDailyActivity) {
         dailyActivityRepository.save(newDailyActivity);
@@ -46,8 +49,10 @@ public class DailyActivityService {
 
         float total = calculateCaloValueService.getTotalByDay(newDailyActivity.getUserId() , newDailyActivity.getDate());
         float totalTime = activityTime.getTotalTimeByDay(newDailyActivity.getUserId() , newDailyActivity.getDate());
+        float rate = caloRate.CalculateRate(dailySummary.getRating() , dailySummary.getCaloriesBurned() , total);
         dailySummary.setCaloriesBurned(total);
         dailySummary.setTotalActivityTime(totalTime);
+        dailySummary.setRating(rate);
         dailySummaryRepository.save(dailySummary);
         return newDailyActivity;
     }
@@ -69,8 +74,10 @@ public class DailyActivityService {
         }
         float total = calculateCaloValueService.getTotalByDay(newDailyActivity.getUserId() , newDailyActivity.getDate());
         float totalTime = activityTime.getTotalTimeByDay(newDailyActivity.getUserId() , newDailyActivity.getDate());
+        float rate = caloRate.CalculateRate(dailySummary.getRating() , dailySummary.getCaloriesBurned() , total);
         dailySummary.setCaloriesBurned(total);
         dailySummary.setTotalActivityTime(totalTime);
+        dailySummary.setRating(rate);
         dailySummaryRepository.save(dailySummary);
         return newDailyActivity;
     }
@@ -89,8 +96,10 @@ public class DailyActivityService {
 
         float total = calculateCaloValueService.getTotalByDay(userId, date);
         float totalTime = activityTime.getTotalTimeByDay(userId, date);
+        float rate = caloRate.CalculateRate(dailySummary.getRating() , dailySummary.getCaloriesBurned() , total);
         dailySummary.setCaloriesBurned(total);
         dailySummary.setTotalActivityTime(totalTime);
+        dailySummary.setRating(rate);
         dailySummaryRepository.save(dailySummary);
     }
 }

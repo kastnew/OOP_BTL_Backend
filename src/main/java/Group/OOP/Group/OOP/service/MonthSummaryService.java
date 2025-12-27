@@ -63,13 +63,14 @@ public class MonthSummaryService {
             }
             totalDays++;
         }
-        avgCaloriesIn = avgCaloriesIn/totalDays;
-        avgCaloriesOut = avgCaloriesOut/totalDays;
-        avgProtein = avgProtein/totalDays;
-        avgFat = avgFat/totalDays;
-        avgFiber = avgFiber/totalDays;
-        avgSugar = avgSugar/totalDays;
-
+        if(totalDays > 0) {
+            avgCaloriesIn = avgCaloriesIn / totalDays;
+            avgCaloriesOut = avgCaloriesOut / totalDays;
+            avgProtein = avgProtein / totalDays;
+            avgFat = avgFat / totalDays;
+            avgFiber = avgFiber / totalDays;
+            avgSugar = avgSugar / totalDays;
+        }
         if(daysHighSugar >= 1){
             note.append("Tháng này bạn có một số ngày ăn đường vượt mức.\n");
             note.append("Nên ăn ít đường lại");

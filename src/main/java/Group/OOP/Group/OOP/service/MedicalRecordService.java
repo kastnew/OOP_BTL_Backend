@@ -6,6 +6,8 @@ import Group.OOP.Group.OOP.repository.MedicalRecordRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class MedicalRecordService {
     @Autowired
@@ -17,6 +19,10 @@ public class MedicalRecordService {
 
     public MedicalRecord updateMedicalRecord(MedicalRecord medicalRecord) {
         return medicalRecordRepository.save(medicalRecord);
+    }
+
+    public List<MedicalRecord> listMedicalRecord(Integer userId) {
+        return medicalRecordRepository.getMedicalRecordByIds(userId);
     }
 
     public void deleteMedicalRecord(Integer recordId) {

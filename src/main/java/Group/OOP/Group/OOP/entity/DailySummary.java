@@ -48,7 +48,7 @@ public class DailySummary {
     private Float totalFiber;
 
     @Column(name = "Rating")
-    private Float rating;
+    private Float rating = 0.0f;
 
     @Column(name = "Notes", length = 255)
     private String notes;
@@ -70,15 +70,16 @@ public class DailySummary {
     }
 
     public Float getTotalRestTime() {
-        return totalRestTime;
+        return totalRestTime != null ? totalRestTime : 0.0f;
     }
 
     public Float getCaloriesConsumed() {
-        return caloriesConsumed;
+        return caloriesConsumed != null ? caloriesConsumed : 0.0f;
     }
 
     public Float getCaloriesBurned() {
-        return caloriesBurned;
+
+        return caloriesBurned != null ? caloriesBurned : 0.0f;
     }
 
     public Float getTotalSugar() {
@@ -98,7 +99,7 @@ public class DailySummary {
     }
 
     public Float getRating() {
-        return rating;
+        return rating != null ? rating : 0.0f;
     }
 
     public String getNotes() {

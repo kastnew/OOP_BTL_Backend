@@ -26,6 +26,9 @@ public class SleepService {
     @Autowired
     private DailySummaryRepository dailySummaryRepository;
 
+    @Autowired
+    private SleepRate sleepRate;
+
     // them giac ngu
     public Sleep createSleep(Sleep new_sleep) {
          sleepRepository.save(new_sleep) ;
@@ -37,7 +40,9 @@ public class SleepService {
             dailySummary.setDate(new_sleep.getSleepDate());
         }
         float totalTime = restTime.getTotalTimeByDay(new_sleep.getUserId(),  new_sleep.getSleepDate());
+        float rate = sleepRate.CalculateRate(dailySummary.getRating() , dailySummary.getTotalRestTime() , totalTime);
         dailySummary.setTotalRestTime(totalTime);
+        dailySummary.setRating(rate);
         dailySummaryRepository.save(dailySummary);
         return new_sleep;
     }
@@ -57,7 +62,9 @@ public class SleepService {
             dailySummary.setDate(new_sleep.getSleepDate());
         }
         float totalTime = restTime.getTotalTimeByDay(new_sleep.getUserId(),  new_sleep.getSleepDate());
+        float rate = sleepRate.CalculateRate(dailySummary.getRating() , dailySummary.getTotalRestTime() , totalTime);
         dailySummary.setTotalRestTime(totalTime);
+        dailySummary.setRating(rate);
         dailySummaryRepository.save(dailySummary);
         return new_sleep;
     }
@@ -74,7 +81,10 @@ public class SleepService {
         sleepRepository.deleteById(sleepId) ;
 
         float totalTime = restTime.getTotalTimeByDay(userId,  date);
+        float rate = sleepRate.CalculateRate(dailySummary.getRating() , dailySummary.getTotalRestTime() , totalTime);
+        dailySummary.setRating(rate);
         dailySummary.setTotalRestTime(totalTime);
+
         dailySummaryRepository.save(dailySummary);
     }
 

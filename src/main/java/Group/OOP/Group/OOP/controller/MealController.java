@@ -9,7 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/Meal")
-@CrossOrigin(origins = "*")
+//@CrossOrigin(origins = "*")
 public class MealController {
    @Autowired
    MealService mealService ;

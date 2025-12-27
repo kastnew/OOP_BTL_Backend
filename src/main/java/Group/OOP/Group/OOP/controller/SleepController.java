@@ -9,7 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/Sleep")
-@CrossOrigin(origins = "*")
+//@CrossOrigin(origins = "*")
 public class SleepController {
     @Autowired
     SleepService sleepService;

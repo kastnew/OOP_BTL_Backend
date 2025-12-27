@@ -51,7 +51,7 @@ public class MonthSummary {
     }
 
     public Double getAvgCaloriesIn() {
-        return avgCaloriesIn;
+        return avgCaloriesIn != null ? avgCaloriesIn : 0.0;
     }
 
     public void setAvgCaloriesIn(Double avgCaloriesIn) {
@@ -59,7 +59,7 @@ public class MonthSummary {
     }
 
     public Double getAvgCaloriesOut() {
-        return avgCaloriesOut;
+        return avgCaloriesOut != null ? avgCaloriesOut : 0.0;
     }
 
     public void setAvgCaloriesOut(Double avgCaloriesOut) {
@@ -67,7 +67,7 @@ public class MonthSummary {
     }
 
     public Double getAvgProtein() {
-        return avgProtein;
+        return avgProtein != null ? avgProtein : 0.0;
     }
 
     public void setAvgProtein(Double avgProtein) {
@@ -75,7 +75,7 @@ public class MonthSummary {
     }
 
     public Double getAvgFat() {
-        return avgFat;
+        return avgFat != null ? avgFat : 0.0;
     }
 
     public void setAvgFat(Double avgFat) {
@@ -83,7 +83,7 @@ public class MonthSummary {
     }
 
     public Double getAvgFiber() {
-        return avgFiber;
+        return avgFiber != null ? avgFiber : 0.0;
     }
 
     public void setAvgFiber(Double avgFiber) {
@@ -91,7 +91,7 @@ public class MonthSummary {
     }
 
     public Double getAvgSugar() {
-        return avgSugar;
+        return avgSugar != null ? avgSugar : 0.0;
     }
 
     public void setAvgSugar(Double avgSugar) {

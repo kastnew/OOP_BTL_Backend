@@ -96,15 +96,4 @@ public class Sleep {
         this.sleepDate = sleepDate;
     }
 
-    public void updateFrom(Sleep other) {
-        if (other == null) return;
-
-        this.userId = other.getUserId();
-        this.sleepDate = other.getSleepDate();
-        this.sleepTime = other.getSleepTime();
-        this.sleepType = other.getSleepType();
-        this.sleepQuality = other.getSleepQuality();
-        this.wakeTime = other.getWakeTime();
-    }
-
 }

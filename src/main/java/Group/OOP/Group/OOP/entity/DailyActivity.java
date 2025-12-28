@@ -39,15 +39,6 @@ public class DailyActivity {
     @Column(name = "Activity_Date")
     private LocalDate date ;
 
-    public void updateFrom(DailyActivity other) {
-        this.userId = other.getUserId();
-        this.activityName = other.getActivityName();
-        this.startTime = other.getStartTime();
-        this.endTime = other.getEndTime();
-        this.caloriesBurned = other.getCaloriesBurned();
-        this.date = other.getDate();
-    }
-
     public Integer getActivityId() {
         return activityId;
     }

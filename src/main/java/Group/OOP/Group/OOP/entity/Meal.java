@@ -127,21 +127,4 @@ public class Meal {
         this.date = date;
     }
 
-    public void updateFrom(Meal other) {
-        if (other == null) return;
-
-        this.userId = other.getUserId();
-        this.dishName = other.getDishName();
-        this.mealType = other.getMealType();
-        this.protein = other.getProtein();
-        this.fat = other.getFat();
-        this.fiber = other.getFiber();
-        this.sugar = other.getSugar();
-        this.calories = other.getCalories();
-        this.date = other.getDate();
-
-        // Không cập nhật mealId vì đây là khóa chính
-        // this.mealId = other.getMealId();
-    }
-
 }

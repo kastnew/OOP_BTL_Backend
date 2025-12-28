@@ -39,30 +39,59 @@ public class MonthSummaryService {
         StringBuilder note = new StringBuilder();;
 
         for (DailySummary dailySummary : monthSummaries) {
-            avgCaloriesIn += dailySummary.getCaloriesConsumed();
-            avgCaloriesOut += dailySummary.getCaloriesBurned();
-            avgProtein += dailySummary.getTotalProtein();
-            avgFat += dailySummary.getTotalFat();
-            avgFiber += dailySummary.getTotalFiber();
-            avgSugar += dailySummary.getTotalSugar();
+            // Sử dụng Optional để tránh null
+            Float caloriesConsumed = dailySummary.getCaloriesConsumed() != null ? dailySummary.getCaloriesConsumed() : 0.0f;
+            Float caloriesBurned = dailySummary.getCaloriesBurned() != null ? dailySummary.getCaloriesBurned() : 0.0f;
+            Float protein = dailySummary.getTotalProtein() != null ? dailySummary.getTotalProtein() : 0.0f;
+            Float fat = dailySummary.getTotalFat() != null ? dailySummary.getTotalFat() : 0.0f;
+            Float fiber = dailySummary.getTotalFiber() != null ? dailySummary.getTotalFiber() : 0.0f;
+            Float sugar = dailySummary.getTotalSugar() != null ? dailySummary.getTotalSugar() : 0.0f;
+            Float activityTime = dailySummary.getTotalActivityTime() != null ? dailySummary.getTotalActivityTime() : 0.0f;
+            Float restTime = dailySummary.getTotalRestTime() != null ? dailySummary.getTotalRestTime() : 0.0f;
+            Float rating = dailySummary.getRating() != null ? dailySummary.getRating() : 0.0f;
 
-            if (dailySummary.getCaloriesConsumed() > dailySummary.getCaloriesBurned()) {
-                daysCaloriesInMoreThanOut++;
+            // Kiểm tra xem có dữ liệu hay không
+            boolean hasData = !(caloriesConsumed == 0.0f &&
+                    caloriesBurned == 0.0f &&
+                    protein == 0.0f &&
+                    fat == 0.0f &&
+                    fiber == 0.0f &&
+                    sugar == 0.0f &&
+                    activityTime == 0.0f &&
+                    restTime == 0.0f &&
+                    rating == 0.0f);
+
+            if (hasData) {
+                // Chỉ tính vào tổng số ngày nếu có dữ liệu
+                totalDays++;
+
+                // Cộng dồn để tính trung bình
+                avgCaloriesIn += caloriesConsumed;
+                avgCaloriesOut += caloriesBurned;
+                avgProtein += protein;
+                avgFat += fat;
+                avgFiber += fiber;
+                avgSugar += sugar;
+
+                // Kiểm tra các điều kiện
+                if (caloriesConsumed > caloriesBurned) {
+                    daysCaloriesInMoreThanOut++;
+                }
+                if (sugar > HIGH_SUGAR) {
+                    daysHighSugar++;
+                }
+                if (fat > HIGH_FAT) {
+                    daysHighFat++;
+                }
+                if (fiber < LOW_FIBER) {
+                    daysLowFiber++;
+                }
+                if (protein < LOW_PROTEIN) {
+                    daysLowProtein++;
+                }
             }
-            if (dailySummary.getTotalSugar() > HIGH_SUGAR) {
-                daysHighSugar++;
-            }
-            if (dailySummary.getTotalFat() > HIGH_FAT) {
-                daysHighFat++;
-            }
-            if (dailySummary.getTotalFiber() < LOW_FIBER) {
-                daysLowFiber++;
-            }
-            if(dailySummary.getTotalProtein() < LOW_PROTEIN) {
-                daysLowProtein++;
-            }
-            totalDays++;
         }
+
         if(totalDays > 0) {
             avgCaloriesIn = avgCaloriesIn / totalDays;
             avgCaloriesOut = avgCaloriesOut / totalDays;
@@ -73,11 +102,11 @@ public class MonthSummaryService {
         }
         if(daysHighSugar >= 1){
             note.append("Tháng này bạn có một số ngày ăn đường vượt mức.\n");
-            note.append("Nên ăn ít đường lại");
+            note.append("Nên ăn ít đường lại.\n");
         }
         else {
             note.append("Tháng này bạn tiêu thụ đường hợp lý.\n");
-            note.append("Giữ mức tiêu thụ đường hoặc giảm đi");
+            note.append("Giữ mức tiêu thụ đường hoặc giảm đi.\n");
         }
 
         // ===== FAT =====

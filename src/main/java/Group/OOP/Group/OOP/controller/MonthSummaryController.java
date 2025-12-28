@@ -8,7 +8,8 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/monthsummary")
-//@CrossOrigin(origins = "*")
+//@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = "*")
 public class MonthSummaryController {
     @Autowired
     private MonthSummaryService monthSummaryService;

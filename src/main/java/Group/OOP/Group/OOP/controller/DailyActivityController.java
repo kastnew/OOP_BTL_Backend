@@ -9,7 +9,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/DailyActivity")
-//@CrossOrigin(origins = "*")
+//@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = "*")
 public class DailyActivityController {
     @Autowired
     private DailyActivityService dailyActivityService;

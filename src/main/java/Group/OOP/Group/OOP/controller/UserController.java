@@ -6,25 +6,36 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/user")
-//@CrossOrigin(origins = "*")
+@RequestMapping("/test")
+//@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = "*")
 public class UserController {
 
     @Autowired
     private UserService userService;
-
-    @PostMapping("/create")
-    public User createUser(@RequestBody User user) {
-        return userService.createUser(user);
+    User uu = new User("Minh", "Nguyen", 28, "Mail");
+    // lấy thông tin 1 user bất kỳ
+    @GetMapping("/{id}")
+    public User getUser(@PathVariable Integer id) {
+        return userService.printUserInfo(id) ;
     }
 
-    @PostMapping("/up")
-    public User updateUser(@RequestBody User user) {
-        return userService.updateUser(user);
+    // update thông tin 1 user
+    @PatchMapping("/up/{id}")
+    public void updateUser(@PathVariable Integer id , @RequestBody User user) {
+        userService.updateUser(id ,user) ;
     }
+//    @PatchMapping("/up{id}")
+//    public void updateUser(@PathVariable Integer id) {
+//        userService.updateUser(id , uu) ;
+//    }
 
-    @GetMapping("/delete/{id}")
-    public void deleteUser(@PathVariable Integer id) {
-        userService.deleteUser(id);
-    }
+    // thêm 1 user
+//    @PostMapping
+//    public void createUser(@RequestBody User newUser){
+//        userService.createUser(newUser);
+//    }
+
+    // delete 1 user
+
 }

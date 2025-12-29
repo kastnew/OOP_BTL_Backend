@@ -6,6 +6,7 @@ import Group.OOP.Group.OOP.repository.DailySummaryRepository;
 import Group.OOP.Group.OOP.repository.SleepRepository;
 import Group.OOP.Group.OOP.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -21,13 +22,15 @@ public class SleepService {
     private UserRepository userRepository;
 
     @Autowired
-    private RestTime restTime;
+    @Qualifier("restTime")
+    private TimeCalculate restTime;
 
     @Autowired
     private DailySummaryRepository dailySummaryRepository;
 
     @Autowired
-    private SleepRate sleepRate;
+    @Qualifier("sleepRate")
+    private CalculateRate sleepRate;
 
     // them giac ngu
     public Sleep createSleep(Sleep new_sleep) {

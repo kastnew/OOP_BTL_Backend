@@ -7,6 +7,7 @@ import Group.OOP.Group.OOP.repository.DailySummaryRepository;
 import Group.OOP.Group.OOP.repository.MealRepository;
 import Group.OOP.Group.OOP.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -26,22 +27,28 @@ public class MealService {
     private DailySummaryRepository dailySummaryRepository;
 
     @Autowired
-    private CalculateProteinValueService calculateProteinValueService;
+    @Qualifier("calculateProteinValueService")
+    private CalculateNutritionValueService calculateProteinValueService;
 
     @Autowired
-    private CalculateFatValueService calculateFatValueService;
+    @Qualifier("calculateFatValueService")
+    private CalculateNutritionValueService calculateFatValueService;
 
     @Autowired
-    private CalculateFiberValueService calculateFiberValueService;
+    @Qualifier("calculateFiberValueService")
+    private CalculateNutritionValueService calculateFiberValueService;
 
     @Autowired
-    private CalculateSugarValueService calculateSugarValueService;
+    @Qualifier("calculateSugarValueService")
+    private CalculateNutritionValueService calculateSugarValueService;
 
     @Autowired
-    private CalculateCalorieIntakeValueService calculateCalorieIntakeValueService;
+    @Qualifier("calculateCalorieIntakeValueService")
+    private CalculateNutritionValueService calculateCalorieIntakeValueService;
 
     @Autowired
-    private CaloInRate caloInRate;
+    @Qualifier("caloInRate")
+    private CalculateRate caloInRate;
 
     // them bua an
     public Meal createMeal(Meal newMeal) {

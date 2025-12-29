@@ -6,6 +6,7 @@ import Group.OOP.Group.OOP.repository.DailyActivityRepository;
 import Group.OOP.Group.OOP.repository.DailySummaryRepository;
 import Group.OOP.Group.OOP.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -28,13 +29,16 @@ public class DailyActivityService {
     private DailySummaryRepository dailySummaryRepository;
 
     @Autowired
-    private CalculateCaloValueService calculateCaloValueService;
+    @Qualifier("calculateCaloValueService")
+    private CalculateNutritionValueService calculateCaloValueService;
 
     @Autowired
-    private ActivityTime activityTime;
+    @Qualifier("activityTime")
+    private TimeCalculate activityTime;
 
     @Autowired
-    private CaloRate caloRate;
+    @Qualifier("caloRate")
+    private CalculateRate caloRate;
 
     // them hoat dong
     public DailyActivity createDailyActivity(DailyActivity newDailyActivity) {

@@ -125,7 +125,7 @@ mvn spring-boot:run
 **Cách 2: Dùng IDE (IntelliJ IDEA / Eclipse)**
 * Mở project bằng IDE.
 * Đợi Maven tải xong các thư viện (Dependencies).
-* Tìm file chính của ứng dụng (có tên là `GroopOopApplication.java` ở mục service).
+* Tìm file chính của ứng dụng (có tên là `GroopOopApplication.java`).
 * Nhấn nút **Run** (biểu tượng tam giác xanh trên thanh công cụ).
 
 ✅ **Kiểm tra thành công:**

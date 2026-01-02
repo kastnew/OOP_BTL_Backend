@@ -66,28 +66,28 @@ cd OOP_BTL_Backend
 ---
 
 ### Bước 2: Cài đặt Cơ Sở Dữ Liệu (Quan Trọng ⚠️)
-Trong thư mục gốc của dự án, bạn sẽ tìm thấy file **`theodoisuckhoe.sql`**.
+Trong thư mục gốc của dự án, bạn sẽ tìm thấy file **`healthtracker.sql`**.
 
 **Thực hiện các thao tác sau trên MySQL Workbench hoặc phpMyAdmin:**
 
 1.  **Tạo Database rỗng:**
-    Tạo một cơ sở dữ liệu mới có tên chính xác là `theodoisuckhoe`. Chạy lệnh SQL sau:
+    Tạo một cơ sở dữ liệu mới có tên chính xác là `healthtracker`. Chạy lệnh SQL sau:
 
     ```sql
-    CREATE DATABASE theodoisuckhoe CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+    CREATE DATABASE healthtracker CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
     ```
 
 2.  **Import dữ liệu:**
     * **Cách 1: Dùng MySQL Workbench**
         * Vào menu **Server** -> **Data Import**.
-        * Chọn **Import from Self-Contained File** và trỏ tới file `theodoisuckhoe.sql`.
-        * Tại phần **Default Target Schema**, chọn `theodoisuckhoe`.
+        * Chọn **Import from Self-Contained File** và trỏ tới file `healthtracker.sql`.
+        * Tại phần **Default Target Schema**, chọn `healthtracker`.
         * Nhấn **Start Import**.
 
     * **Cách 2: Dùng dòng lệnh (Terminal/CMD)**
         Di chuyển terminal vào thư mục chứa file `.sql` và chạy lệnh:
         ```bash
-        mysql -u root -p theodoisuckhoe < theodoisuckhoe.sql
+        mysql -u root -p healthtracker < healthtracker.sql
         ```
 
 ### Bước 3: Cấu hình kết nối (application.properties)
@@ -97,8 +97,8 @@ Mở file `src/main/resources/application.properties`. Chỉnh sửa các thông
 # Cổng chạy backend (Mặc định 8080)
 server.port=8080
 
-# Kết nối MySQL (Đã trỏ đúng vào DB 'theodoisuckhoe')
-spring.datasource.url=jdbc:mysql://localhost:3306/theodoisuckhoe?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+# Kết nối MySQL (Đã trỏ đúng vào DB 'healthtracker')
+spring.datasource.url=jdbc:mysql://localhost:3306/healthtracker?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
 
 # Tên đăng nhập MySQL (Mặc định XAMPP là 'root')
 spring.datasource.username=root
@@ -142,56 +142,10 @@ Khi terminal hiện dòng log tương tự: `Started GroopOopApplication in ... 
    │  │  └─ Group/OOP/Group/OOP/
    │  │     ├── GroupOopApplication.java
    │  │     ├── controller/
-   │  │     │  ├── DailyActivityController.java
-   │  │     │  ├── DailySummaryController.java
-   │  │     │  ├── HealthIndicatorsController.java
-   │  │     │  ├── MealController.java
-   │  │     │  ├── MedicalRecordController.java
-   │  │     │  ├─ MonthSummaryController.java
-   │  │     │  ├─ SleepController.java
-   │  │     │  └─ UserController.java
    │  │     ├─ dto/
-   │  │     │  ├─ MonthSummary.java
-   │  │     │  └─ MonthSummaryRequest.java
    │  │     ├─ entity/
-   │  │     │  ├─ DailyActivity.java
-   │  │     │  ├─ DailySummary.java
-   │  │     │  ├─ HealthIndicators.java
-   │  │     │  ├─ Meal.java
-   │  │     │  ├─ MedicalRecord.java
-   │  │     │  ├─ Sleep.java
-   │  │     │  └─ User.java
    │  │     ├─ repository/
-   │  │     │  ├─ DailyActivityRepository.java
-   │  │     │  ├─ DailySummaryRepository.java
-   │  │     │  ├─ HealthIndicatorsRepository.java
-   │  │     │  ├─ MealRepository.java
-   │  │     │  ├─ MedicalRecordRepository.java
-   │  │     │  ├─ SleepRepository.java
-   │  │     │  └─ UserRepository.java
    │  │     └─ service/
-   │  │        ├─ ActivityTime.java
-   │  │        ├─ CalculateCalorieIntakeValueService.java
-   │  │        ├─ CalculateCaloValueService.java
-   │  │        ├─ CalculateFatValueService.java
-   │  │        ├─ CalculateFiberValueService.java
-   │  │        ├─ CalculateNutritionValueService.java
-   │  │        ├─ CalculateProteinValueService.java
-   │  │        ├─ CalculateRate.java
-   │  │        ├─ CalculateSugarValueService.java
-   │  │        ├─ CaloInRate.java
-   │  │        ├─ CaloRate.java
-   │  │        ├─ DailyActivityService.java
-   │  │        ├─ DailySummaryService.java
-   │  │        ├─ HealthIndicatorsService.java
-   │  │        ├─ MealService.java
-   │  │        ├─ MedicalRecordService.java
-   │  │        ├─ MonthSummaryService.java
-   │  │        ├─ RestTime.java
-   │  │        ├─ SleepRate.java
-   │  │        ├─ SleepService.java
-   │  │        ├─ TimeCalculate.java
-   │  │        └─ UserService.java
    │  └─ resources/
    │     └─ application.properties
    └─ test/

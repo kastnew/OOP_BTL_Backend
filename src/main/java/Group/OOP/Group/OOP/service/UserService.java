@@ -13,31 +13,15 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    // in ra tất cả thông tin khách hàng
-//    public void test() {
-//        List<User> listUser = userRepository.getAllUser();
-//        for (User user : listUser) {
-//            System.out.println(user);
-//        }
-//    }
-
-    // lấy thông tin 1 user bất kỳ
-    public User printUserInfo(Integer userId){
-        Optional<User> tmp = userRepository.findById(userId);
-        User user = tmp.get() ;
-        if(user != null)
-        {
-            System.out.println("=== THÔNG TIN USER ===");
-            System.out.println("ID: " + user.getId());
-            System.out.println("Họ và tên: " + user.getFirstName() + " " + user.getLastName());
-            System.out.println("Tuổi: " + user.getAge());
-            System.out.println("Giới tính: " + user.getGender());
-        } else {
-            System.out.println("❌ Không tìm thấy user với ID: " + userId);
-        }
-        return user ;
+    // thêm 1 user
+    public User createUser(String email , String password) {
+        User user = new User();
+        user.setEmail(email);
+        user.setPassword(password);
+        return userRepository.save(user);
     }
-    // update 1 số thông tin của user
+
+
     public User updateUser(Integer id , User userUpdate){
         Optional<User> userOptional = userRepository.findById(id); ;
 
@@ -62,12 +46,30 @@ public class UserService {
         return userRepository.save(user) ;
     }
 
-    // Thêm 1 user
-//    public User createUser(User newUser){
-//        if(userRepository.existsUser(newUser.getFirstName(), newUser.getLastName(), newUser.getAge(), newUser.getGender()) == true) {
-//            throw new RuntimeException("Email đã tồn tại");
-//        }
-//        return userRepository.save(newUser);
-//    }
+    // lấy thông tin của 1 user
+    public User printUserInfo(Integer userId){
+        Optional<User> tmp = userRepository.findById(userId);
+        User user = tmp.get() ;
+        if(user != null)
+        {
+            System.out.println("=== THÔNG TIN USER ===");
+            System.out.println("ID: " + user.getId());
+            System.out.println("Họ và tên: " + user.getFirstName() + " " + user.getLastName());
+            System.out.println("Tuổi: " + user.getAge());
+            System.out.println("Giới tính: " + user.getGender());
+        } else {
+            System.out.println("❌ Không tìm thấy user với ID: " + userId);
+        }
+        return user ;
+    }
+
+    // lấy id của user dựa vào email và password
+    public Integer findUserId(String email , String password){
+        return userRepository.findId(email,password);
+    }
+
+    public void deleteUser(Integer userId) {
+        userRepository.deleteById(userId);
+    }
 
 }
